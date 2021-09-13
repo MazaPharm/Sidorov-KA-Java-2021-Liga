@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
 
 public class Counter {
-    static int counter = 0;
+    volatile static int counter = 0;
     public static final int N_THREADS = 4;
 
     /// Перепишите код так, чтобы операция увеличения счетчика была синхронизируемой
@@ -26,14 +26,13 @@ public class Counter {
                 });
     }
 
-    static CompletableFuture<Void> runCounting(ExecutorService executorService) {
-        return CompletableFuture.runAsync(() -> {
-            for (int i = 0; i < 1000000; i++) {
-                synchronized (Counter.class) {
-                    Counter.counter = Counter.counter + 1;
+     static CompletableFuture<Void> runCounting(ExecutorService executorService) {
+             return CompletableFuture.runAsync(() -> {
+                 for (int i = 0; i < 1000000; i++) {
 
-                }
-            }
-        }, executorService);
-    }
+                         Counter.counter = Counter.counter + 1;
+
+                 }
+             }, executorService);
+     }
 }

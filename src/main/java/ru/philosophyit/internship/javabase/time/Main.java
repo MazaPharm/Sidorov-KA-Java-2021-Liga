@@ -7,14 +7,31 @@ import java.util.Calendar;
 public class Main {
 
     private static StringBuilder days;
+    private static String daysOfWeek, tableDays;
 
-    public static void main(String... args) {
+    public static void main(String... args) throws Exception {
 
         System.out.println(DateTimeFormatter.ISO_INSTANT.format(Calendar.getInstance().toInstant()));
 
-        nameOfDays();
-        daysOfMonth();
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                nameOfDays();
+            }
+        });
 
+       Thread t2 = new Thread(new Runnable() {
+           @Override
+           public void run() {
+               daysOfMonth();
+           }
+       });
+            t1.start();
+            t2.start();
+            t1.join();
+            t2.join();
+        System.out.println(daysOfWeek);
+        System.out.println(tableDays);
 
         // Отобразите календарь текущего месяца в консоли
         // например:
@@ -31,7 +48,7 @@ public class Main {
             dayOfWeks.append(" ");
         }
         dayOfWeks.append(namesOfDays[1]);
-        System.out.println(dayOfWeks.toString());
+      daysOfWeek=dayOfWeks.toString();
     }
 
     private static void daysOfMonth() {
@@ -42,10 +59,10 @@ public class Main {
         int dayInBegin = calendar.get(Calendar.DAY_OF_WEEK);
         calendar.set(2021, month - 1, 1);
         int daysInPreviousMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        tableOfDays(countDays, dayInBegin, daysInPreviousMonth);
+        tableDays=tableOfDays(countDays, dayInBegin, daysInPreviousMonth);
     }
 
-    private static void tableOfDays(int countDays, int dayInBegin, int daysInPreviousMonth) {
+    private static String tableOfDays(int countDays, int dayInBegin, int daysInPreviousMonth) {
         days = new StringBuilder();
         int d = 0;
         int prvsMonth = 0;
@@ -91,6 +108,6 @@ public class Main {
             }
             k++;
         }
-        System.out.println(days.toString());
+        return (days.toString());
     }
 }

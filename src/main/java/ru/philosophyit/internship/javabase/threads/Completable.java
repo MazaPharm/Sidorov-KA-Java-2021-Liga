@@ -5,7 +5,6 @@ import java.util.function.Function;
 
 public class Completable {
     // Почему в выводе нет "Hello world"?
-    //Поток не может ничего возвращать
     public static void main(String[] args) {
         CompletableFuture.supplyAsync(() -> {
             try {
