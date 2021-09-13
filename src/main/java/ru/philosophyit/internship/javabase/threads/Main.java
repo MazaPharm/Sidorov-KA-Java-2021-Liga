@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 public class Main {
 
     // Почему при вызове executorService.shutdown(); программа продолжает свое исполнение ?
-    //Ответ: программа работает пока жимв хотя бы 1 поток, startSomeDaemon() будет жить постоянно
+    //Ответ: не продолжает
     // Почему если убрать строчку 28 (executorService.shutdown()) программа не прекратит свое исполнение
     // даже после завершения всех тасок в executorService ? Ответ выше
     // Почему при работе тасок executorService в консоль в секунду попадает всего 4 сообщения, тогда как тасок в executorService - 16?
@@ -29,7 +29,7 @@ public class Main {
                 System.err.println(String.format("Hello from %d callable", captureId));
             });
         }
-//        executorService.shutdown();
+        //executorService.shutdown();
     }
 
     private static int getThreadsCount() {

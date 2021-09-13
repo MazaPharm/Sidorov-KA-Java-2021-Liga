@@ -5,6 +5,7 @@ import java.util.function.Function;
 
 public class Completable {
     // Почему в выводе нет "Hello world"?
+    //НЕобходимо добавить join()
     public static void main(String[] args) {
         CompletableFuture.supplyAsync(() -> {
             try {
@@ -25,6 +26,6 @@ public class Completable {
             return first + "world";
         }))
         .thenApply(Function.identity())
-        .thenAccept(System.out::println);
+        .thenAccept(System.out::println).join();
     }
 }
