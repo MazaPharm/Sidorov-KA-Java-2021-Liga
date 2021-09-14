@@ -14,13 +14,15 @@ public class Main {
         user = new User("Kirill","Liga", "Rus");//Доступные языки "Cz","Eng","Rus"
         //Если будет указан другой язык, которого нет в списке, то выведется по умолчанию
         // на Английском
+        MessagePick.mapInitialization();
         NotificationFactory factory = new MailNotificationFactory();
         reciveMessage(factory.getNotification(user));
     }
 
     public static void reciveMessage(Notification notification){
         GetMessage message = new CreateMessage(notification);
-        GetMessage languageSet= new SetLanguage(message,user.getLanguage(), Template.FAREWELL);
+        //Здесь выбираем тип сообщения Template.WELCOME, Template.FAREWELL, Template.TASKS
+        GetMessage languageSet= new SetLanguage(message,user.getLanguage(), Template.WELCOME);
         System.out.println(languageSet.createMessage());
     }
 }

@@ -17,8 +17,9 @@ public class MailNotification implements Notification {
 
     @Override
     public String getText() {
-        Map<String, String>m=Language.m;
-        String language=Language.language;
+        Language l = new Language();
+        Map<String, String>m=l.getMap();
+        String language=l.getLanguage();
         if(m.containsKey(language))
             return String.format(
                     m.get(language),

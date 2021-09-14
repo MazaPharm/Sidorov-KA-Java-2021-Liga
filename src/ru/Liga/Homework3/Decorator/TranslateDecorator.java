@@ -20,9 +20,9 @@ public class TranslateDecorator implements GetMessage {
 
     @Override
     public String createMessage() {
-        Language.language=language;
-        MessagePick.mapInitialization();
-        Language.m=pickMap();
+        Language l = new Language();
+        l.setLanguage(language);
+        l.setMap(pickMap());
         return getMessage.createMessage();
     }
 
