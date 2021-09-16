@@ -1,42 +1,24 @@
 package ru.Liga.Homework3.Decorator;
 
-import ru.Liga.Homework3.Language;
-import ru.Liga.Homework3.MessagePick;
-import ru.Liga.Homework3.Template;
+import ru.Liga.Homework3.factory.Notification;
 
-import java.util.Map;
+public class TranslateDecorator implements Notification {
 
-public class TranslateDecorator implements GetMessage {
+    private  Notification notification;
+    private User user;
 
-    private GetMessage getMessage;
-    private String language;
-    private Template template;
-
-    public TranslateDecorator(GetMessage getMessage, String language,Template template){
-        this.getMessage=getMessage;
-        this.language=language;
-        this.template=template;
+    public TranslateDecorator(Notification notification, User user) {
+        this.notification = notification;
+        this.user=user;
     }
+
 
     @Override
-    public String createMessage() {
-        Language l = new Language();
-        l.setLanguage(language);
-        l.setMap(pickMap());
-        return getMessage.createMessage();
-    }
+    public String getText() {
+        return String.format(notification.getText(),
+                user.getName(),
+                user.getWorkPlace()
+        );
 
-    private Map<String,String> pickMap(){
-        MessagePick messagePick = new MessagePick();
-        switch (template){
-            case WELCOME:
-                return messagePick.getWelcome();
-            case TASKS:
-                return messagePick.getTasks();
-            case FAREWELL:
-                return messagePick.getFarewell();
-            default:
-                return messagePick.getWelcome();
-        }
     }
 }
