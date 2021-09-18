@@ -54,11 +54,11 @@
   </component>
   <component name="RunManager" selected="Application.BadCode2">
     <configuration name="BadCode2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bad.code2.BadCode2" />
+      <option name="MAIN_CLASS_NAME" value="com.bad.code2.base.BadCode2" />
       <module name="badCode.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bad.code2.*" />
+          <option name="PATTERN" value="com.bad.code2.base.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,6 +105,7 @@
       <workItem from="1631955856851" duration="59000" />
       <workItem from="1631956025381" duration="860000" />
       <workItem from="1631956958672" duration="69000" />
+      <workItem from="1631957161687" duration="44000" />
     </task>
     <servers />
   </component>
