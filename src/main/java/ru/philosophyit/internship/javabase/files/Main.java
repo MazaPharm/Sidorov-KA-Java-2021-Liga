@@ -18,7 +18,6 @@ public class Main {
         Files.walk(Paths.get("src"))
                 .filter(Files::isRegularFile)
                 .map(Path::toFile)
-                .collect(Collectors.toList())
                 .forEach(System.out::println);
 
 

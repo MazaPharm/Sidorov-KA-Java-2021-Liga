@@ -15,6 +15,9 @@ public class DeadLock {
 
     // Поменяйте в строчках 22 getRunnable на getRunnableInterruptibility, запустите программу и дайте ей завершиться самой.
     // Проанализируйте наблюдаемый результат для себя
+    //ОТВЕТ: при использовании getRunnable программа встанет, так как будет пойман DeadLock, но если
+    //заменить на getRunnableInterruptibility тогда программа остановится так как вылетит исключение
+    //java.lang.InterruptedException так как прерванный поток попытается вызввать планировщик потоков
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         DeadLock first = new DeadLock("first"),
