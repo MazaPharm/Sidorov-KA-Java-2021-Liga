@@ -18,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -47,18 +47,18 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RunManager" selected="Application.BadCode2">
     <configuration name="BadCode2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bad.code2.base.BadCode2" />
-      <module name="badCode.main" />
+      <option name="MAIN_CLASS_NAME" value="com.bad.code2.BadCode2" />
+      <module name="badCode_main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bad.code2.base.*" />
+          <option name="PATTERN" value="com.bad.code2.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -75,6 +75,53 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="bad-code" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="bad-code" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -99,13 +146,8 @@
       <updated>1601407556254</updated>
       <workItem from="1601407557447" duration="3977000" />
       <workItem from="1601498029548" duration="159000" />
-      <workItem from="1631889254972" duration="168000" />
-      <workItem from="1631889431768" duration="10000" />
-      <workItem from="1631889894360" duration="4211000" />
-      <workItem from="1631955856851" duration="59000" />
-      <workItem from="1631956025381" duration="860000" />
-      <workItem from="1631956958672" duration="69000" />
-      <workItem from="1631957161687" duration="44000" />
+      <workItem from="1632210597963" duration="1595000" />
+      <workItem from="1632215854834" duration="308000" />
     </task>
     <servers />
   </component>
@@ -113,29 +155,33 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1631956700184">
+    <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser" timestamp="1632216029731">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1631956700184" />
-    <state width="1286" height="163" key="GridCell.Tab.0.bottom" timestamp="1631954473897">
+    <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1632216029731" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1632215920911">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1286" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1631954473897" />
-    <state width="1286" height="163" key="GridCell.Tab.0.center" timestamp="1631954473897">
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1632215920911" />
+    <state width="1286" height="163" key="GridCell.Tab.0.bottom" timestamp="1632213220420">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1286" height="163" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1631954473897" />
-    <state width="1286" height="163" key="GridCell.Tab.0.left" timestamp="1631954473897">
+    <state width="1286" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1632213220420" />
+    <state width="1286" height="163" key="GridCell.Tab.0.center" timestamp="1632213220420">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1286" height="163" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1631954473897" />
-    <state width="1286" height="163" key="GridCell.Tab.0.right" timestamp="1631954473897">
+    <state width="1286" height="163" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1632213220420" />
+    <state width="1286" height="163" key="GridCell.Tab.0.left" timestamp="1632213220420">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1286" height="163" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1631954473897" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1631956708501">
+    <state width="1286" height="163" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1632213220420" />
+    <state width="1286" height="163" key="GridCell.Tab.0.right" timestamp="1632213220420">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1631956708501" />
+    <state width="1286" height="163" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1632213220420" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1632210631822">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1632210631822" />
   </component>
 </project>

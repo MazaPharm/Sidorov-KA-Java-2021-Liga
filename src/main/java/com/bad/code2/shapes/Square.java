@@ -1,8 +1,8 @@
 package com.bad.code2.shapes;
 
-import com.bad.code2.base.Shape3D;
+import com.bad.code2.base.Shape2D;
 
-public class Square implements Shape3D {
+public class Square implements Shape2D {
 
     private Double edgeSize;
 
@@ -10,13 +10,8 @@ public class Square implements Shape3D {
         this.edgeSize = edgeSize;
     }
 
-
-    /**
-     * @return Perimeter square
-     */
     @Override
-    public Double getValue() {
-        return edgeSize * edgeSize;
+    public Double getPerimeter() {
+        return edgeSize*edgeSize;
     }
-
 }
