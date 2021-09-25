@@ -3,12 +3,12 @@ package domain.store;
 import domain.User;
 import service.ChangeUserInfo;
 
-public class ElectronicsShop implements Store {
+public class ElectronicStore implements Store {
 
     private Basket basket;
     private Products products;
 
-    public ElectronicsShop(Products products, Basket basket) {
+    public ElectronicStore(Products products, Basket basket) {
         this.products = products;
         this.basket = basket;
         basket.initializationList();

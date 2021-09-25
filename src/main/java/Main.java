@@ -1,4 +1,4 @@
-import domain.store.ElectronicsShop;
+import domain.store.ElectronicStore;
 import domain.store.Products;
 import domain.store.Store;
 import domain.store.Basket;
@@ -18,16 +18,16 @@ public class Main {
      * смена пероснальных данных
      */
     public static void storeOptions(User user) {
-        Store electronicsShop = new ElectronicsShop(new Products(), new Basket());
-        electronicsShop.addProductsInBasket(5);
+        Store electronicsStore = new ElectronicStore(new Products(), new Basket());
+        electronicsStore.addProductsInBasket(5);
 
         //при смене количества товаро сменить диапозон
         //Math.random()
-        electronicsShop.deleteFromBasket((int) (Math.random() * 5));
-        electronicsShop.newOrder(user);
+        electronicsStore.deleteFromBasket((int) (Math.random() * 5));
+        electronicsStore.newOrder(user);
 
         //если заказ был успешно создан товары больше не добавятся
-        electronicsShop.addProductsInBasket(3);
+        electronicsStore.addProductsInBasket(3);
 
         //замена информации у пользователя
 //        electronicsShop.changePersonalData(user).changeUserName("Llirik");
