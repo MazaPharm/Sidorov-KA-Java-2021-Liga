@@ -1,6 +1,6 @@
-package user;
+package service;
 
-import user.User;
+import domain.User;
 
 /**
  * Проверяет информацию пользователя на валидность

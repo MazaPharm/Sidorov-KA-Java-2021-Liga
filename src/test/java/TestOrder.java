@@ -1,10 +1,10 @@
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import store.builOrder.AccessChangeBasket;
-import store.builOrder.Basket;
-import store.builOrder.Order;
-import user.User;
+import service.AccessChangeBasket;
+import domain.store.Basket;
+import domain.store.Order;
+import domain.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

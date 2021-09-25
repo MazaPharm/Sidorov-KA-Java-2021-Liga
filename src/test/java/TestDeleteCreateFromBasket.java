@@ -1,8 +1,8 @@
 import org.junit.Test;
 import org.mockito.Mock;
-import store.Products;
-import store.builOrder.Basket;
-import user.User;
+import domain.store.Products;
+import domain.store.Basket;
+import domain.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

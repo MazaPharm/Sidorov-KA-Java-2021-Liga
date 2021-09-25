@@ -1,8 +1,9 @@
-package store.builOrder;
+package domain.store;
 
-import store.Errors;
-import user.CheckValidUserData;
-import user.User;
+import domain.Errors;
+import domain.User;
+import service.AccessChangeBasket;
+import service.CheckValidUserData;
 
 import java.util.List;
 

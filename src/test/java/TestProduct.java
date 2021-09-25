@@ -1,6 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
-import store.Products;
+import domain.store.Products;
 
 public class TestProduct {
 

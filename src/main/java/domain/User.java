@@ -1,4 +1,4 @@
-package user;
+package domain;
 
 public class User {
 

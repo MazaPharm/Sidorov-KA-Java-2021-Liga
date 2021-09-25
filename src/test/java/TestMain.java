@@ -1,5 +1,4 @@
 import org.junit.Test;
-import user.User;
 
 import java.io.File;
 import java.io.FileInputStream;

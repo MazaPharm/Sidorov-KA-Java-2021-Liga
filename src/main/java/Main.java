@@ -1,8 +1,8 @@
-import store.ElectronicsShop;
-import store.Products;
-import store.Store;
-import store.builOrder.Basket;
-import user.User;
+import domain.store.ElectronicsShop;
+import domain.store.Products;
+import domain.store.Store;
+import domain.store.Basket;
+import domain.User;
 
 public class Main {
     public static void main(String[] args) {

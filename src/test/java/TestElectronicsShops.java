@@ -1,11 +1,13 @@
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-import store.ElectronicsShop;
-import store.Products;
-import store.builOrder.Basket;
-import user.ChangeUserInfo;
-import user.User;
+import domain.store.ElectronicsShop;
+import domain.store.Products;
+import domain.store.Basket;
+import domain.User;
+import service.ChangeUserInfo;
+
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 
 public class TestElectronicsShops {
 
@@ -35,6 +37,15 @@ public class TestElectronicsShops {
         ElectronicsShop electronicsShop = new ElectronicsShop(new Products(), basket);
         electronicsShop.newOrder(user);
         Mockito.verify(basket, Mockito.times(1)).createOrderFromBasket(user);
+    }
+
+
+    @Test
+    public void testChangePersonalData(){
+        ElectronicsShop electronicsShop = new ElectronicsShop(new Products(), new Basket());
+        User user = Mockito.mock(User.class);
+        electronicsShop.changePersonalData(user);
+        Assert.assertThat(electronicsShop.changePersonalData(user), instanceOf(ChangeUserInfo.class));
     }
 
 }

@@ -1,8 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mock;
-import user.ChangeUserInfo;
-import user.User;
+import service.ChangeUserInfo;
+import domain.User;
 
 public class TestChangeUserData {
 

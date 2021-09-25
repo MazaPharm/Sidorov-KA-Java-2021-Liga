@@ -1,8 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mock;
-import user.CheckValidUserData;
-import user.User;
+import service.CheckValidUserData;
+import domain.User;
 
 public class TestCheckValidData {
 

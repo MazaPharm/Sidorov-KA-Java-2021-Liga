@@ -1,4 +1,4 @@
-package store;
+package domain.store;
 
 import java.util.ArrayList;
 import java.util.List;
