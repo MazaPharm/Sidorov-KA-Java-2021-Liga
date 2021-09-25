@@ -7,27 +7,24 @@ package store;
 public class Errors {
 
     /**
-     *
      * @return сообщение об ошибке, что заказ создан, корзину менять нельзя
      */
-    public static String orderCreated(){
+    public static String orderCreated() {
         return "Заказ был отправлен на создание" +
                 ", в корзину больше ничего нельзя добавить и изменить\n";
     }
 
     /**
-     *
      * @return возвращает ошибку, которая гооврит, что данные пользователя не верны
      */
-    public static String invalidUserData(){
+    public static String invalidUserData() {
         return "Заказ не создан.Проверьте данные пользователя!\n";
     }
 
     /**
-     *
      * @return сообщение об ошибке, при попытке создать заказ из пустой корзины
      */
-    public static String emptyBasket(){
+    public static String emptyBasket() {
         return "Для создания заказа добавьте товары в корзину\n";
     }
 

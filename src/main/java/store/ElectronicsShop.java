@@ -8,19 +8,20 @@ import user.User;
 public class ElectronicsShop implements Store {
 
     private Basket basket;
+    private Products products;
 
-
-    {
-        basket = new Basket();
+    public ElectronicsShop(Products products, Basket basket) {
+        this.products = products;
+        this.basket = basket;
+        basket.initializationList();
     }
-
 
     /**
      * @param i какое количество товара надо добавить в корзину
      */
     @Override
     public void addProductsInBasket(int i) {
-        basket.addProducts(i);
+        basket.addProducts(i, products);
     }
 
     /**
@@ -47,5 +48,6 @@ public class ElectronicsShop implements Store {
     public ChangeUserInfo changePersonalData(User user) {
         return new ChangeUserInfo(user);
     }
+
 
 }

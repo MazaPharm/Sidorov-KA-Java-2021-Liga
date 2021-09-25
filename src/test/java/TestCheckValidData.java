@@ -7,13 +7,13 @@ import user.User;
 public class TestCheckValidData {
 
 
-    private User user = new User("","","");
+    private User user = new User("", "", "");
 
-    private CheckValidUserData checkValidUserData= new CheckValidUserData(user);
+    private CheckValidUserData checkValidUserData = new CheckValidUserData(user);
 
     @Test
-    public void testCheckValidUserData(){
-       boolean check= checkValidUserData.isValidDAta();
+    public void testCheckValidUserData() {
+        boolean check = checkValidUserData.isValidDAta();
         Assert.assertEquals(false, check);
     }
 

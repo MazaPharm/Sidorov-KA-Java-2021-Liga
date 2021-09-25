@@ -5,6 +5,7 @@ import store.builOrder.AccessChangeBasket;
 import store.builOrder.Basket;
 import store.builOrder.Order;
 import user.User;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
@@ -15,7 +16,7 @@ public class TestOrder {
     private Basket basket = new Basket();
 
     @Test
-    public void testCreateOrderFromOrderClass() throws Exception{
+    public void testCreateOrderFromOrderClass() throws Exception {
         ByteArrayOutputStream bo = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bo));
         User user = new User("k", "123456789012", "email");

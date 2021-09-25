@@ -3,6 +3,7 @@ package store.builOrder;
 import store.Errors;
 import store.Products;
 import user.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,21 +11,17 @@ import java.util.List;
 public class Basket {
 
     private List<String> basketList;
-    private final AccessChangeBasket accessChangeBasket;
+    private AccessChangeBasket accessChangeBasket;
 
-    {
-        basketList = new ArrayList<>();
-        accessChangeBasket = new AccessChangeBasket();
-    }
 
     /**
      * добавляет рандомные товары в корзину из Product
      *
      * @param countProducts число продуктов для добавления в корзину basketList
      */
-    public void addProducts(int countProducts) {
+    public void addProducts(int countProducts, Products products) {
+        products.setProducts();
         if (accessChangeBasket.getAccess()) {
-            Products products = new Products();
             for (int i = 0; i < countProducts; i++) {
                 basketList.add(products.getProduct((int) (Math.random() * 10)));
             }
@@ -44,7 +41,9 @@ public class Basket {
             accessChangeBasket.setAccessToChange(false);
             Order order = new Order(user);
             order.createOrder(basketList, accessChangeBasket);
-        } else System.out.println(Errors.emptyBasket());
+        } else {
+            System.out.println(Errors.emptyBasket());
+        }
     }
 
     /**
@@ -53,9 +52,14 @@ public class Basket {
      * @param i индекс товара для удаления
      */
     public void delete(int i) {
-        if (basketList.size() > 0)
+        if (basketList.size() > 0) {
             basketList.remove(i);
+        }
     }
 
 
+    public void initializationList() {
+        basketList = new ArrayList<>();
+        accessChangeBasket = new AccessChangeBasket();
+    }
 }

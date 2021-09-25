@@ -22,7 +22,7 @@ public class Order {
      *
      * @param productsList лист заказов из корзины
      */
-    public void createOrder(List<String> productsList, AccessChangeBasket accessChangeBasket ) {
+    public void createOrder(List<String> productsList, AccessChangeBasket accessChangeBasket) {
         CheckValidUserData checkValidUserData = new CheckValidUserData(user);
         if (checkValidUserData.isValidDAta()) {
             System.out.println("Ваш заказ:");

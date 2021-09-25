@@ -5,10 +5,9 @@ import java.util.List;
 
 
 public class Products {
-    private final List<String> products;
+    private List<String> products;
 
-
-    {
+    public void setProducts() {
         products = new ArrayList<>();
         products.add("Компьютер");
         products.add("Телефон");
@@ -21,6 +20,7 @@ public class Products {
         products.add("Телевизор");
         products.add("Аксессуар");
     }
+
 
     /**
      * @param i индекс товара из списка товаров

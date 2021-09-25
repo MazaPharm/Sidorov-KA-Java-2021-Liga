@@ -1,5 +1,7 @@
 import store.ElectronicsShop;
+import store.Products;
 import store.Store;
+import store.builOrder.Basket;
 import user.User;
 
 public class Main {
@@ -16,13 +18,17 @@ public class Main {
      * смена пероснальных данных
      */
     public static void storeOptions(User user) {
-        Store electronicsShop = new ElectronicsShop();
+        Store electronicsShop = new ElectronicsShop(new Products(), new Basket());
         electronicsShop.addProductsInBasket(5);
+
         //при смене количества товаро сменить диапозон
         //Math.random()
         electronicsShop.deleteFromBasket((int) (Math.random() * 5));
         electronicsShop.newOrder(user);
-        electronicsShop.addProductsInBasket(3);//если заказ был успешно создан товары больше не добавятся
+
+        //если заказ был успешно создан товары больше не добавятся
+        electronicsShop.addProductsInBasket(3);
+
         //замена информации у пользователя
 //        electronicsShop.changePersonalData(user).changeUserName("Llirik");
 //        electronicsShop.changePersonalData(user).changeUserAddress("Saint-Petesburg");

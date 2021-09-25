@@ -5,11 +5,13 @@ import user.User;
 
 public interface Store {
 
-     void addProductsInBasket(int i);
+    void addProductsInBasket(int i);
 
-     void deleteFromBasket(int i);
+    void deleteFromBasket(int i);
 
-     void newOrder(User user);
+    void newOrder(User user);
 
-     ChangeUserInfo changePersonalData(User user);
+    ChangeUserInfo changePersonalData(User user);
+
+
 }
