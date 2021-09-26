@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestBasket" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-09-25T16:23:49" hostname="LAPTOP-PBV3KCEJ" time="0.056">
+  <properties/>
+  <testcase name="testChangeAfterCreateOrder" classname="TestBasket" time="0.056"/>
+  <system-out><![CDATA[Р’Р°С€ Р·Р°РєР°Р·:
+РљРѕС„РµРІР°СЂРєР°
+РўРµР»РµРІРёР·РѕСЂ
+РўРµР»РµС„РѕРЅ
+РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРѕР»СѓС‡Р°С‚РµР»Рµ:
+РёРјСЏ: Kirill 
+РўРµР»РµС„РѕРЅ: 123456789012 
+РђРґСЂРµСЃСЃ: email
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
