@@ -9,4 +9,4 @@ services:
     volumes:
       - .:/HomeWork5
     ports:
-      - "5050:5050"
+      - "5432:5432"
