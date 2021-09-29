@@ -7,6 +7,6 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
     volumes:
-      - .:/HomeWork5
+      - ./:/HomeWork5
     ports:
       - "5432:5432"
