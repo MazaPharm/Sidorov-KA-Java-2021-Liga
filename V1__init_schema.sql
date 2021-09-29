@@ -33,7 +33,7 @@ create table student(
 
 create table student_lesson(
     lesson_id integer,
-    student_id,
+    student_id integer,
     foreign key (lesson_id) references lesson (lesson_id),
     foreign key (student_id) references student (student_id)
 );
