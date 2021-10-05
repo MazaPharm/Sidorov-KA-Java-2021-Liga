@@ -32,15 +32,17 @@ create table student(
 );
 
 create table student_lesson(
-    lesson_id integer,
-    student_id integer,
+    lesson_id integer not null,
+    student_id integer not null,
     foreign key (lesson_id) references lesson (lesson_id),
-    foreign key (student_id) references student (student_id)
+    foreign key (student_id) references student (student_id),
+    primary key (lesson_id,student_id)
 );
 
 create table teacher_lesson(
-    lesson_id integer,
-    teacher_id integer,
+    lesson_id integer not null,
+    teacher_id integer not null,
     foreign key (lesson_id) references lesson (lesson_id),
     foreign key (teacher_id) references teacher (teacher_id),
+    primary key (lesson_id,teacher_id)
 );
