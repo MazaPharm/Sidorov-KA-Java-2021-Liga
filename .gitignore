@@ -1,0 +1,17 @@
+.idea
+out/
+
+git/
+gradle.properties
+gradlew
+gradlew.bat
+settings.gradle
+*.class
+
+bin/
+gen/
+
+
+.gradle/
+gradle/
+build/
