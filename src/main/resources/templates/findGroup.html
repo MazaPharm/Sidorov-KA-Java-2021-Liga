@@ -5,8 +5,11 @@
     <title>Groups</title>
 </head>
 <body>
+<form th:action="@{/groups/create}" th:method="post">
+    <input type="submit" value="Create new group">
+</form>
 <div th:each="groups:${groups}" >
-    <a th:text="${groups.getName()}">groups</a>
+    <a  th:href="@{/groups/{id}/update(id=${groups.getId()})}" th:text="${groups.getName()}">groups</a>
 </div>
 </body>
 </html>
