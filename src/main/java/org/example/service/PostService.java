@@ -5,7 +5,6 @@ import org.example.repository.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +14,6 @@ public class PostService {
 
     @Autowired
     private PostRepo postRepo;
-
 
     public String update(Post post) {
         post.setText("Updated post's text");
@@ -28,6 +26,7 @@ public class PostService {
         postRepo.save(post);
         return post;
     }
+
     @Transactional
     public String delete(Long id) {
         postRepo.deleteById(id);

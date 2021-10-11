@@ -14,7 +14,6 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
 
     Optional<Groups> findById(Long id);
 
-
     @Modifying(clearAutomatically = true)
     @Query(value = "Delete from Groups g WHERE g.id=:id")
     void deleteById(Long id);

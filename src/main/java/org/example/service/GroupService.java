@@ -29,7 +29,6 @@ public class GroupService {
         return group;
     }
 
-
     public String findAll(Model model){
         model.addAttribute("groups", groupRepository.findAll());
         return "findGroup";
