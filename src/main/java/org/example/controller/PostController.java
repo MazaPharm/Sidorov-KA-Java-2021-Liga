@@ -14,26 +14,24 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-
     @GetMapping
     public List<Post> allPosts() {
         return postService.findAll();
     }
+
     @PostMapping(value = "/create")
-    public Post create() {
-        return postService.create();
+    public Post create(@RequestBody Post post) {
+        return postService.create(post);
     }
 
     @PutMapping(value = "/{id}/update")
     public String update(@PathVariable("id") Long id) {
         return postService.update(postService.findById(id));
-
     }
 
     @DeleteMapping("/{id}/delete")
     public String delete(@PathVariable("id") Long id) {
         return postService.delete(id);
     }
-
 
 }

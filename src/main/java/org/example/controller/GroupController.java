@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/groups")
 public class GroupController {
 
-
     @Autowired
     private GroupService groupService;
 
@@ -19,10 +18,12 @@ public class GroupController {
     public String findGroups(Model model){
         return groupService.findAll(model);
     }
+
     @PostMapping("/create")
-    public String createGroup(){
-        return groupService.save(groupService.createGroup());
+    public String createGroup(@RequestParam("name") String name){
+        return groupService.save(groupService.createGroup(name));
     }
+
     @GetMapping("/{id}/update")
     public String updateGroup(Model model, @PathVariable("id") Long id){
         model.addAttribute("groups", groupService.findById(id));
@@ -34,7 +35,7 @@ public class GroupController {
         Groups group = groupService.findById(id);
         return groupService.save(groupService.updateGroup(group,name));
     }
-   // @PreAuthorize("hasAuthority('ADMIN')")
+
     @PostMapping("/{id}/delete")
     public String deleteGroup(@PathVariable("id") Long id){
         return groupService.deleteById(id);

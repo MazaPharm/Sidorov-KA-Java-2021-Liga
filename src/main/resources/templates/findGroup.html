@@ -6,6 +6,8 @@
 </head>
 <body>
 <form th:action="@{/groups/create}" th:method="post">
+    <label>New name for new group</label>
+    <input type="text" name="name"/>
     <input type="submit" value="Create new group">
 </form>
 <div th:each="groups:${groups}" >

@@ -18,15 +18,12 @@ public class GroupService {
     @Autowired
     private GroupRepository groupRepository;
 
-    @Transactional
-    public Groups createGroup(){
+    public Groups createGroup(String name){
         Groups group = new Groups();
-        group.setName("Group");
+        group.setName(name);
         return group;
     }
 
-
-    @Transactional
     public Groups updateGroup(Groups group, String name){
         group.setName(name);
         return group;
@@ -53,6 +50,5 @@ public class GroupService {
         groupRepository.deleteById(id);
         return "redirect:/groups/all";
     }
-
 
 }

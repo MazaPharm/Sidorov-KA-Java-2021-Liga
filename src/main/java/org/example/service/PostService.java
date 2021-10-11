@@ -16,7 +16,7 @@ public class PostService {
     @Autowired
     private PostRepo postRepo;
 
-    @Transactional
+
     public String update(Post post) {
         post.setText("Updated post's text");
         postRepo.save(post);
@@ -24,9 +24,7 @@ public class PostService {
     }
 
     @Transactional
-    public Post create() {
-        Post post = new Post();
-        post.setText("Post text");
+    public Post create(Post post) {
         postRepo.save(post);
         return post;
     }
