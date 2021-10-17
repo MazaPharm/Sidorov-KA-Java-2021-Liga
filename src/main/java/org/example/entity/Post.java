@@ -1,5 +1,7 @@
 package org.example.entity;
 
+
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,18 @@ public class Post {
 
     @Column(name = "text")
     private String text;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Groups groups;
+
+    public Groups getGroup() {
+        return groups;
+    }
+
+    public void setGroup(Groups groups) {
+        this.groups = groups;
+    }
 
     public Long getId() {
         return id;

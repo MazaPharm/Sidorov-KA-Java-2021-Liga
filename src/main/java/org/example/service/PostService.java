@@ -12,17 +12,26 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class PostService {
 
-    @Autowired
-    private PostRepo postRepo;
+    private final PostRepo postRepo;
 
-    public String update(Post post) {
-        post.setText("Updated post's text");
+    private final GroupService groupService;
+
+    @Autowired
+    public PostService(PostRepo postRepo, GroupService groupService) {
+        this.postRepo = postRepo;
+        this.groupService = groupService;
+    }
+
+    public String update(Long id,String text) {
+        Post post = findById(id);
+        post.setText(text);
         postRepo.save(post);
         return "Updated successfully";
     }
 
     @Transactional
-    public Post create(Post post) {
+    public Post create(Post post, Long id) {
+        post.setGroup(groupService.findById(id));
         postRepo.save(post);
         return post;
     }
@@ -33,14 +42,13 @@ public class PostService {
         return "Post has been deleted";
     }
 
-    public List<Post> findAll() {
-        return postRepo.findAll();
+    public List<Post> findAll(Long id) {
+        return postRepo.findByGroupsId(id);
     }
 
     public Post findById(Long id) {
         Optional<Post> postFound = postRepo.findById(id);
-        Post post = postFound.get();
-        return post;
+        return  postFound.get();
     }
 
 }

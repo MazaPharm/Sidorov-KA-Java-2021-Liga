@@ -1,13 +1,10 @@
 package org.example.service;
 
 import org.example.entity.Groups;
-import org.example.entity.Post;
 import org.example.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,25 +15,20 @@ public class GroupService {
     @Autowired
     private GroupRepository groupRepository;
 
-    public Groups createGroup(String name){
-        Groups group = new Groups();
+    public Groups updateGroup(Long id, String name){
+        Groups group = getGroup(id);
         group.setName(name);
         return group;
     }
 
-    public Groups updateGroup(Groups group, String name){
-        group.setName(name);
-        return group;
-    }
-
-    public String findAll(Model model){
-        model.addAttribute("groups", groupRepository.findAll());
-        return "findGroup";
+    public List<Groups> findAll(){
+        List<Groups> groups = groupRepository.findAll();
+        return groups;
     }
     @Transactional
     public String save(Groups group){
         groupRepository.save(group);
-        return "redirect:/groups/all";
+        return "Group created";
     }
 
     public Groups findById(Long id){
@@ -47,7 +39,12 @@ public class GroupService {
     @Transactional
     public String deleteById(Long id){
         groupRepository.deleteById(id);
-        return "redirect:/groups/all";
+        return "Group deleted";
+    }
+
+    private Groups getGroup(Long id){
+        Optional<Groups> groupFound = groupRepository.findById(id);
+        return groupFound.get();
     }
 
 }
