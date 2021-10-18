@@ -1,6 +1,6 @@
 package org.example.entity;
 
-import org.example.entity.GroupPosts;
+
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,9 +16,9 @@ public class Groups {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "groupPost_id")
-    private List<GroupPosts> groupPostsList;
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "groupPost_id")
+//    private List<GroupPosts> groupPostsList;
 
     public Long getId() {
         return id;

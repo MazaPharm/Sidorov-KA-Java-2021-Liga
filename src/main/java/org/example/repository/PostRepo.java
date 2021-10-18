@@ -1,20 +1,18 @@
 package org.example.repository;
 
-import org.example.entity.Groups;
+import org.example.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
+import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
-public interface GroupRepository extends JpaRepository<Groups, Long> {
+@Repository
+public interface PostRepo extends JpaRepository<Post, Long> {
 
-    List<Groups> findAll();
-
-    Optional<Groups> findById(Long id);
+    Optional<Post> findById(Long id);
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "Delete from Groups g WHERE g.id=:id")
+    @Query(value = "Delete from Post g WHERE g.id=:id")
     void deleteById(Long id);
 }
