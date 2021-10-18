@@ -29,7 +29,7 @@ public class FriendController {
 
     /**
      * Создает запрос на добавление в друзья
-     * PathVarible("id")  id пользователя, который отправил запрос
+     * PathVariable("id")  id пользователя, который отправил запрос
      * RequestParam("id") id пользователя, которому отправили запрос
      */
     @PostMapping("/{id}/add/request")
@@ -45,7 +45,7 @@ public class FriendController {
     }
     /**
      * Добавление пользователя в друзья
-     * PathVarible("id")  id запроса
+     * PathVariable("id")  id запроса
      *
      */
     @PostMapping("/{id}/request/add")
@@ -55,7 +55,7 @@ public class FriendController {
 
     /**
      * Отказ от добавления пользователя в друзья
-     * PathVarible("id")  id запроса
+     * PathVariable("id")  id запроса
      *
      */
     @PostMapping("/{id}/request/refused")
@@ -64,7 +64,7 @@ public class FriendController {
     }
     /**
      * Удаление пользователя из друзей
-     * PathVarible("id")  id пользователя, который удаляет
+     * PathVariable("id")  id пользователя, который удаляет
      * RequestParam("id") id пользователя, которого удаляют
      */
     @PostMapping("/{id}/friend/delete")

@@ -40,16 +40,22 @@ public class FriendService {
     }
 
     public String addFriend(Long id, Long idFriend) {
-        if(id.equals(idFriend)){
+        if (id.equals(idFriend)) {
             return "You can not add yourself";
         }
-        User user = userService.findUserById(id);
-        User friend = userService.findUserById(idFriend);
-        FriendRequest friendRequest = new FriendRequest();
-        friendRequest.setUser(user);
-        friendRequest.setFriend(friend);
-        friendRequestRepo.save(friendRequest);
-        return "Request created";
+        Friend friendExist = friendRepo.findByFriendIdAndUserId(idFriend, id);
+        Friend friendExistBack = friendRepo.findByFriendIdAndUserId(id, idFriend);
+        if (friendExist != null || friendExistBack !=null) {
+            return "This user is your friend";
+        } else {
+            User user = userService.findUserById(id);
+            User friend = userService.findUserById(idFriend);
+            FriendRequest friendRequest = new FriendRequest();
+            friendRequest.setUser(user);
+            friendRequest.setFriend(friend);
+            friendRequestRepo.save(friendRequest);
+            return "Request created";
+        }
     }
 
     public List<RequestDto> myRequest(Long id){
