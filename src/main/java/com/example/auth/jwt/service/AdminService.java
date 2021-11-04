@@ -1,14 +1,11 @@
 package com.example.auth.jwt.service;
 
 import com.example.auth.jwt.dto.BookingDto;
-import com.example.auth.jwt.dto.ConfirmBookingDto;
 import com.example.auth.jwt.dto.UserDto;
 import com.example.auth.jwt.entity.Booking;
-import com.example.auth.jwt.entity.ConfirmBookingArrival;
 import com.example.auth.jwt.entity.Roles;
 import com.example.auth.jwt.entity.User;
 import com.example.auth.jwt.repository.BookingRepository;
-import com.example.auth.jwt.repository.ConfirmBookingArrivalRepository;
 import com.example.auth.jwt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,19 +21,16 @@ import java.util.stream.Collectors;
 public class AdminService {
 
     private boolean inProcess = false;
-    private ConfirmBookingArrival confirmBookingArrivalInProcess;
-    private List<ConfirmBookingArrival> sortedByDate = new ArrayList<>();
+    private Booking confirmBookingArrivalInProcess;
+    private List<Booking> sortedByDate = new ArrayList<>();
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;
-    private final ConfirmBookingArrivalRepository confirmBookingArrivalRepository;
 
     @Autowired
     public AdminService(UserRepository userRepository,
-                        BookingRepository bookingRepository,
-                        ConfirmBookingArrivalRepository confirmBookingArrivalRepository) {
+                        BookingRepository bookingRepository) {
         this.userRepository = userRepository;
         this.bookingRepository = bookingRepository;
-        this.confirmBookingArrivalRepository = confirmBookingArrivalRepository;
     }
 
     /**
@@ -102,7 +96,7 @@ public class AdminService {
      * @return список активных броней
      */
     public List<BookingDto> allBooking() {
-        List<Booking> bookings = bookingRepository.findAll();
+        List<Booking> bookings = bookingRepository.findByStatus("ACCEPTED");
         List<BookingDto> bookingDtos = new ArrayList<>();
         for (Booking booking : bookings) {
             bookingDtos.add(new BookingDto(booking));
@@ -118,24 +112,8 @@ public class AdminService {
     @Transactional
     public void confirmBookingArrival(Long bookingId) {
         Booking booking = getBooking(bookingId);
-        ConfirmBookingArrival confirmBookingArrival = new ConfirmBookingArrival();
-        confirmBookingArrival.setDate(booking.getDate());
-        confirmBookingArrival.setUser(booking.getUser());
-        saveAndDelete(booking, confirmBookingArrival);
+        booking.setStatus("CONFIRMED");
         sortByDate();
-    }
-
-    /**
-     * Метод сохраняет бронь в таблицу подтвержденного прихода пользователя
-     * и удаляет бронь, так как пользователь уже пришел
-     *
-     * @param booking               бронь
-     * @param confirmBookingArrival экземпляр класса, подтверждение явки пользователя
-     */
-    @Transactional
-    public void saveAndDelete(Booking booking, ConfirmBookingArrival confirmBookingArrival) {
-        bookingRepository.deleteById(booking.getId());
-        confirmBookingArrivalRepository.save(confirmBookingArrival);
     }
 
     /**
@@ -163,7 +141,7 @@ public class AdminService {
     @Transactional
     public String endSlot() {
         inProcess = false;
-        confirmBookingArrivalRepository.deleteById(confirmBookingArrivalInProcess.getId());
+        bookingRepository.deleteById(confirmBookingArrivalInProcess.getId());
         sortedByDate.remove(confirmBookingArrivalInProcess);
         confirmBookingArrivalInProcess = null;
         return "You can call next";
@@ -174,9 +152,9 @@ public class AdminService {
      *
      * @return DTO текущего выполняемого слота
      */
-    public ConfirmBookingDto currentBookingInProcess() {
+    public BookingDto currentBookingInProcess() {
         if (confirmBookingArrivalInProcess != null) {
-            return new ConfirmBookingDto(confirmBookingArrivalInProcess);
+            return new BookingDto(confirmBookingArrivalInProcess);
         }
         return null;
     }
@@ -189,10 +167,10 @@ public class AdminService {
      */
     public String seeNextVisitor() {
         if (sortedByDate.size() > 1 && inProcess) {
-            ConfirmBookingArrival nextVisitorByTime = sortedByDate.get(1);
+            Booking nextVisitorByTime = sortedByDate.get(1);
             return " Next by time:" + nextVisitorByTime.getUser().getName() + "  time slot " + nextVisitorByTime.getDate();
         } else if (sortedByDate.size() >= 1) {
-            ConfirmBookingArrival nextVisitorByTime = sortedByDate.get(0);
+            Booking nextVisitorByTime = sortedByDate.get(0);
             return " Next by time:" + nextVisitorByTime.getUser().getName() + " with time slot " + nextVisitorByTime.getDate();
         }
         return "No more visitors";
@@ -202,9 +180,9 @@ public class AdminService {
      * Метод который сортирует лист пришедших пользователей по дате, и конвертит их в List<ConfirmBookingArrival>
      */
     private void sortByDate() {
-        List<ConfirmBookingArrival> confirmBookingArrivals = confirmBookingArrivalRepository.findAll();
+        List<Booking> confirmBookingArrivals = bookingRepository.findByStatus("CONFIRMED");
         sortedByDate = confirmBookingArrivals.stream()
-                .sorted(Comparator.comparing(ConfirmBookingArrival::getDate)).collect(Collectors.toList());
+                .sorted(Comparator.comparing(Booking::getDate)).collect(Collectors.toList());
     }
 
     /**
@@ -228,11 +206,11 @@ public class AdminService {
      * Метод возвращает список активных броней, которые админ отметил, как явившиеся на прием
      * @return DTO класса ConfirmBookingDto
      */
-    public List<ConfirmBookingDto> getListConfirmBookingByAdmin() {
-        List<ConfirmBookingArrival> confirmBookingArrivals = confirmBookingArrivalRepository.findAll();
-        List<ConfirmBookingDto> confirmBookingDtos = new ArrayList<>();
-        for (ConfirmBookingArrival confirmBookingArrival:confirmBookingArrivals) {
-            confirmBookingDtos.add(new ConfirmBookingDto(confirmBookingArrival));
+    public List<BookingDto> getListConfirmBookingByAdmin() {
+        List<Booking> confirmBookingArrivals = bookingRepository.findByStatus("CONFIRMED");
+        List<BookingDto> confirmBookingDtos = new ArrayList<>();
+        for (Booking confirmBookingArrival:confirmBookingArrivals) {
+            confirmBookingDtos.add(new BookingDto(confirmBookingArrival));
         }
         return confirmBookingDtos;
     }

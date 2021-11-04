@@ -1,7 +1,6 @@
 package com.example.auth.jwt.controller;
 
 import com.example.auth.jwt.dto.BookingDto;
-import com.example.auth.jwt.dto.ConfirmBookingDto;
 import com.example.auth.jwt.dto.UserDto;
 import com.example.auth.jwt.service.AdminService;
 import com.example.auth.jwt.service.UserServiceImpl;
@@ -56,7 +55,7 @@ public class AdminController {
     }
 
     @GetMapping("/current/slot")
-    public ConfirmBookingDto currentSlotInProcess() {
+    public BookingDto currentSlotInProcess() {
         return adminService.currentBookingInProcess();
     }
 
@@ -76,7 +75,7 @@ public class AdminController {
     }
 
     @GetMapping("/list/confirm/bookings")
-    public List<ConfirmBookingDto> getListConfirmBookingByAdmin(){
+    public List<BookingDto> getListConfirmBookingByAdmin(){
          return adminService.getListConfirmBookingByAdmin();
     }
 

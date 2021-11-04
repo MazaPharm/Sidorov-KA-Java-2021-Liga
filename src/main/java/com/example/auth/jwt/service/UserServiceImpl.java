@@ -5,10 +5,8 @@ import com.example.auth.jwt.dto.BookingDto;
 import com.example.auth.jwt.dto.UserDto;
 import com.example.auth.jwt.entity.Booking;
 import com.example.auth.jwt.entity.Roles;
-import com.example.auth.jwt.entity.Temporary;
 import com.example.auth.jwt.entity.User;
 import com.example.auth.jwt.repository.BookingRepository;
-import com.example.auth.jwt.repository.TemporaryRepository;
 import com.example.auth.jwt.repository.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,16 +30,13 @@ public class UserServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final BookingRepository bookingRepository;
-    private final TemporaryRepository temporaryRepository;
 
     public UserServiceImpl(UserServiceSlots userServiceSlots, UserRepository userRepository, PasswordEncoder passwordEncoder,
-                           BookingRepository bookingRepository,
-                           TemporaryRepository temporaryRepository) {
+                           BookingRepository bookingRepository) {
         this.userServiceSlots = userServiceSlots;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.bookingRepository = bookingRepository;
-        this.temporaryRepository = temporaryRepository;
 
     }
 
@@ -86,6 +81,11 @@ public class UserServiceImpl implements UserDetailsService {
         return new UserDto(getUser());
     }
 
+    private Booking getBooking(Long id){
+        Optional<Booking> booking = bookingRepository.findById(id);
+        return booking.get();
+    }
+
     /**
      * Метод для быстрого получения экземпляр класса User из базы данных
      *
@@ -96,18 +96,6 @@ public class UserServiceImpl implements UserDetailsService {
         String currentUser = authentication.getName();
         return userRepository.findByUsername(currentUser);
     }
-
-    /**
-     * Метод для быстрого получения экземпляра Temporary
-     *
-     * @param id идентификатор Temporary в базе данных
-     * @return экземпляр класса Temporary
-     */
-    private Temporary getTemporary(Long id) {
-        Optional<Temporary> temporary = temporaryRepository.findById(id);
-        return temporary.get();
-    }
-
     /**
      * Метод позволяющий забронировать свободный слот
      *
@@ -126,31 +114,28 @@ public class UserServiceImpl implements UserDetailsService {
         if (date.getTime() > setingDate.getTime()) {
             return "This time has already passed! Change other time slot";
         }
-        Temporary temporary = new Temporary();
         User user = getUser();
-        temporary.setDate(setingDate);
-        temporary.setUser(user);
-        temporary.setTimeAdded(date);
-        temporaryRepository.save(temporary);
+        Booking booking = new Booking();
+        booking.setUser(user);
+        booking.setSettingDate(date);
+        booking.setDate(setingDate);
+        booking.setStatus("WAIT");
+        bookingRepository.save(booking);
         return "For accepted go to the link:" +
-                "localhost:8080/user/accept/booking/?id=" + temporary.getId();
+                "localhost:8080/user/accept/booking/?id=" + booking.getId();
     }
 
     /**
      * Метод, который подтверждает бронь от пользователя (пользователь перешел по ссылке)
      * и сохранение брони в таблицу
      *
-     * @param temporaryId идентификатор брони во временно хранилище
+     *
      */
     @Transactional
-    public void bookingAccepted(Long temporaryId) {
-        Temporary temporary = getTemporary(temporaryId);
-        Booking booking = new Booking();
-        User user = getUser();
-        booking.setUser(user);
-        booking.setDate(temporary.getDate());
+    public void bookingAccepted(Long bookingId) {
+        Booking booking = getBooking(bookingId);
+        booking.setStatus("ACCEPTED");
         bookingRepository.save(booking);
-        temporaryRepository.deleteById(temporaryId);
     }
 
     /**

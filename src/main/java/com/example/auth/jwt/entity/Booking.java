@@ -18,6 +18,28 @@ public class Booking {
     @Column(name = "date")
     private Date date;
 
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "setting_date")
+    private Date settingDate;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getSettingDate() {
+        return settingDate;
+    }
+
+    public void setSettingDate(Date settingDate) {
+        this.settingDate = settingDate;
+    }
+
     public Date getDate() {
         return date;
     }

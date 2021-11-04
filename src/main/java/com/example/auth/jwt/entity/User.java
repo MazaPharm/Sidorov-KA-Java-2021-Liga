@@ -47,10 +47,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<Roles> roles;
 
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<ConfirmBookingArrival> confirmBookingArrivals = new ArrayList<>();
 
     public Set<Roles> getRoles() {
         return roles;

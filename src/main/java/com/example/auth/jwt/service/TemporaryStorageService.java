@@ -1,7 +1,7 @@
 package com.example.auth.jwt.service;
 
-import com.example.auth.jwt.entity.Temporary;
-import com.example.auth.jwt.repository.TemporaryRepository;
+import com.example.auth.jwt.entity.Booking;
+import com.example.auth.jwt.repository.BookingRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +14,11 @@ import java.util.List;
  */
 @Service
 public class TemporaryStorageService {
+    private final long TIME_TO_CONFIRM_BY_USER = 840000;
+    private final BookingRepository bookingRepository;
 
-    private final long TIME_TO_CONFIRM_BY_USER=840000;
-    private final TemporaryRepository temporaryRepository;
-
-    public TemporaryStorageService(TemporaryRepository temporaryRepository) {
-        this.temporaryRepository = temporaryRepository;
-
+    public TemporaryStorageService(BookingRepository bookingRepository) {
+        this.bookingRepository = bookingRepository;
     }
 
     /**
@@ -34,11 +32,11 @@ public class TemporaryStorageService {
      */
     @Scheduled(fixedDelay = 60000)
     private void checkAccept() throws ParseException {
-        List<Temporary> temporaryList = temporaryRepository.findAll();
+        List<Booking> temporaryBookings = bookingRepository.findByStatus("WAIT");
         Date date = new Date();
-        for (Temporary temporary : temporaryList) {
-            if (date.getTime() - temporary.getTimeAdded().getTime() > TIME_TO_CONFIRM_BY_USER) {
-                temporaryRepository.deleteById(temporary.getId());
+        for (Booking temporaryBooking : temporaryBookings) {
+            if (date.getTime() - temporaryBooking.getSettingDate().getTime() > TIME_TO_CONFIRM_BY_USER) {
+                bookingRepository.deleteById(temporaryBooking.getId());
             }
         }
     }

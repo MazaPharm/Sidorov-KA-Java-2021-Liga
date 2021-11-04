@@ -1,9 +1,7 @@
 package com.example.auth.jwt.service;
 
 import com.example.auth.jwt.entity.Booking;
-import com.example.auth.jwt.entity.Temporary;
 import com.example.auth.jwt.repository.BookingRepository;
-import com.example.auth.jwt.repository.TemporaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -19,12 +17,10 @@ public class TimesSlotService {
 
 
     private final BookingRepository bookingRepository;
-    private final TemporaryRepository temporaryRepository;
 
     @Autowired
-    public TimesSlotService(BookingRepository bookingRepository, TemporaryRepository temporaryRepository) {
+    public TimesSlotService(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
-        this.temporaryRepository = temporaryRepository;
     }
 
     /**
@@ -46,7 +42,7 @@ public class TimesSlotService {
         };
         Thread newThread = new Thread(task);
         newThread.start();
-        List<Booking> bookingList = bookingRepository.findAll();
+        List<Booking> bookingList = bookingRepository.findByStatus("ACCEPTED");
         for (Booking booking : bookingList) {
             Date bookingDate = booking.getDate();
             if (date.getTime() > bookingDate.getTime()) {
@@ -56,11 +52,11 @@ public class TimesSlotService {
     }
 
     private void checkTemporary(Date date) {
-        List<Temporary> temporaries = temporaryRepository.findAll();
-        for (Temporary temporary : temporaries) {
-            Date temporaryDate = temporary.getDate();
+        List<Booking> temporaryBookings = bookingRepository.findByStatus("WAIT");
+        for (Booking temporaryBooking : temporaryBookings) {
+            Date temporaryDate = temporaryBooking.getDate();
             if (date.getTime() > temporaryDate.getTime()) {
-                temporaryRepository.deleteById(temporary.getId());
+                bookingRepository.deleteById(temporaryBooking.getId());
             }
         }
     }

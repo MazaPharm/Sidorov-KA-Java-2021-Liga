@@ -1,18 +1,11 @@
 package com.example.auth.jwt.service;
 
 import com.example.auth.jwt.entity.Booking;
-import com.example.auth.jwt.entity.ConfirmBookingArrival;
-import com.example.auth.jwt.entity.Temporary;
 import com.example.auth.jwt.repository.BookingRepository;
-import com.example.auth.jwt.repository.ConfirmBookingArrivalRepository;
-import com.example.auth.jwt.repository.TemporaryRepository;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 /**
  * Сервтс который создате список свобоных слотов по правилам
@@ -22,14 +15,9 @@ public class UserServiceSlots {
 
     List<String> timeSlots = new ArrayList<>();
     private final BookingRepository bookingRepository;
-    private final TemporaryRepository temporaryRepository;
-    private final ConfirmBookingArrivalRepository confirmBookingArrivalRepository;
 
-    public UserServiceSlots(BookingRepository bookingRepository, TemporaryRepository temporaryRepository,
-                            ConfirmBookingArrivalRepository confirmBookingArrivalRepository) {
+    public UserServiceSlots(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
-        this.temporaryRepository = temporaryRepository;
-        this.confirmBookingArrivalRepository = confirmBookingArrivalRepository;
     }
 
     /**
@@ -100,14 +88,12 @@ public class UserServiceSlots {
             String[] timeSplit = time.get(i).split(":");
             gregorianCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeSplit[0]));
             gregorianCalendar.set(Calendar.MINUTE, Integer.parseInt(timeSplit[1]));
-            ConfirmBookingArrival confirmBookingArrival = confirmBookingArrivalRepository
-                    .findByDate(gregorianCalendar.getTime());
             Booking booking = bookingRepository.findByDate(gregorianCalendar.getTime());
-            Temporary temporary = temporaryRepository.findByDate(gregorianCalendar.getTime());
-            if (booking == null && temporary == null && confirmBookingArrival == null) {
+            if (booking == null) {
                 timeSlots.add((timeSlots.size() + 1) + "-" + gregorianCalendar.getTime().toString());
             }
         }
+     
 
     }
 
